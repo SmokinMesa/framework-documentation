@@ -34,7 +34,7 @@
     import bloglatest_text_2_2 from "~/node_modules/frontend-framework/components/saas/blog/bloglatest-text-2-2/bloglatest-text-2-2";
 
 
-    import mdFile from '~/node_modules/frontend-framework/components/saas/blog/bloglatest-image-1-1//README.md';
+    // import mdFile from '~/node_modules/frontend-framework/components/saas/blog/bloglatest-image-1-1//README.md';
 
     export default {
         name: 'pageComponentsBlog',
