@@ -1,0 +1,44 @@
+/*
+    title:  layouts
+    author: @nexuspoint.co.uk
+    notes:  override stuff just for this tenant
+            use framework where possible
+
+
+
+======================================================================================================================================================================================================== */
+
+
+@use "~/assets/scss/_theme" as *;
+@use "~/node_modules/frontend-framework/uikit/mixins/_mixins" as *;
+
+
+//  create the col engine
+//  ====================================================================================================
+@for $i from 1 through 12 {
+    .col-#{$i} {
+        @include col-($i);
+    }
+}
+
+
+//  app (main nuxt instance)
+//  ====================================================================================================
+.app {
+    @include flex($dir: column, $justify: space-between);
+
+    min-height: 100vh;
+}
+
+
+
+
+.doc-window {
+    background: #f5f5f5;
+    border-top: 1px dashed $grey-2;
+
+    .sw {
+        padding: 80px 0;
+
+    }
+}

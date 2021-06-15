@@ -1,0 +1,125 @@
+/*
+    title:  theme
+    author: @nexuspoint.co.uk
+    notes:	variables used throughout the UI elements and within layout styling
+    		further components and styles have a dependency on these variables
+
+======================================================================================================================================================================================================== */
+
+
+
+
+//  site widths/responsive breakpoints
+//  ====================================================================================================
+$standard-col-margin: 15px !default;
+
+$break-x-small: 320px !default;
+$break-small: 425px !default;
+$break-medium: 769px !default;
+$break-large: 1025px !default;
+$break-x-large: 1440px !default;
+
+$sw-small: 100% !default;
+$sw-medium: 100% !default;
+$sw-large: 100% !default;
+$sw-x-large: 1420px !default;
+$sw-max: 1920px !default;
+
+
+
+
+//  branding
+//  ====================================================================================================
+$color-1: #b4d234 !default;      // Nexus Point
+$color-2: #FEF7AA !default;      // Brand/Accent 2
+$color-3: #005163 !default;      // Brand/Accent 3
+$color-4: #BCB269 !default;      // Brand/Accent 4
+$color-5: #ECF9FA !default;      // Framework/Light Background
+$color-6: #005163 !default;      // Framework/Dark Background
+
+$grey-1: #D1D6E0 !default;       //	Framework/Borders
+$grey-2: #222 !default;       //
+$grey-3: #ccc !default;       //
+$grey-4: #ccc !default;       //
+$grey-5: #ccc !default;       //
+$grey-6: #A2A9AF !default;       // States/Inactive
+$grey-7: #000 !default;          // Text & Neutrals/Body
+
+$text-black: #000 !default;
+
+$color-success: #008E09 !default;
+$color-warning: #FFBF00 !default;
+$color-error: #E24033 !default;
+
+$color-facebook: #3b5998 !default;
+$color-twitter: #1da1f2 !default;
+$color-google: #db4437 !default;
+
+
+
+
+//	typography
+//  ====================================================================================================
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Nunito:wght@700&display=swap');
+
+$base-font-size: 14px !default;
+
+$h0-size: 4.125rem !default;
+$h1-size: 1.875rem !default;
+$h2-size: 1.625rem !default;
+$h3-size: 1.3125rem !default;
+$h4-size: 1rem !default;
+$h5-size: .875rem !default;
+
+$p-size: 1rem !default;
+$p-padding: .8571428571428571rem 0 !default;    //  = 24px
+$p-line-height: 26px !default;
+
+$link-color: $color-1 !default;
+
+$body-bg-color: #fff !default;
+$body-color: $grey-2 !default;
+$body-font-family: 'Inter', sans-serif !default;
+$body-font-weight: 400 !default;
+
+$heading-color: $grey-7 !default;
+$heading-font-family: 'Nunito', sans-serif !default;
+$heading-font-weight: 700 !default;
+
+
+
+
+//	global border
+//  ====================================================================================================
+$global-border-color: $grey-1 !default;
+$global-border-radius: 0 !default;
+
+@if (lightness($body-bg-color) > 50) {
+	$global-border-color: #e5e5e5;
+} @else {
+	$global-border-color: lighten($body-bg-color, 20%);
+}
+
+
+
+
+//  global component padding
+//  ====================================================================================================
+%global-component-padding {
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+    @media screen and (min-width: $break-large) {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    @media screen and (min-width: $break-large) {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+}
+
+
+
+

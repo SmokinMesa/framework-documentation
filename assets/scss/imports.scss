@@ -1,0 +1,66 @@
+/*
+    title:  imports
+    author: @nexuspoint.co.uk
+    notes:  uses dart SASS and Modules
+
+======================================================================================================================================================================================================== */
+
+
+
+
+//  SASS MODULES
+//  ====================================================================================================
+@use "forwards" as *;   //  forward the uikit modules
+
+
+
+
+//  global to the project
+//  ====================================================================================================
+@use "global/layouts" as *;
+@use "global/typography" as *;
+@use "global/buttons" as *;
+@use "global/forms" as *;
+@use "global/animations" as *;
+
+
+
+
+//  repeatable (in a loop) components where you don't want the style duplicated X times
+//  ====================================================================================================
+
+
+
+
+//  include/set styles for forwarded modules mixin
+//  ====================================================================================================
+@include button-styles(
+    $border-radius: .75rem,
+    $font-size: 1rem,
+    $font-weight: 600,
+    $padding: 1.25rem 1.5625rem,
+    $threshold: 70%,
+);
+
+
+
+@include form-styles();
+
+
+
+
+//  these are just for demo/dev as would be installed via their component
+// @import "~/node_modules/frontend-framework/components/saas/blog/bloglatest-image-1-1/bloglatest-image-1-1";
+// @import "~/node_modules/frontend-framework/components/saas/blog/bloglatest-image-1-2/bloglatest-image-1-2";
+// @import "~/node_modules/frontend-framework/components/saas/blog/bloglatest-image-2-1/bloglatest-image-2-1";
+// @import "~/node_modules/frontend-framework/components/saas/blog/bloglatest-image-2-2/bloglatest-image-2-2";
+// @import "~/node_modules/frontend-framework/components/saas/blog/bloglatest-slider-1/bloglatest-slider-1";
+// @import "~/node_modules/frontend-framework/components/saas/blog/bloglatest-slider-2/bloglatest-slider-2";
+// @import "~/node_modules/frontend-framework/components/saas/blog/bloglatest-text-1-1/bloglatest-text-1-1";
+// @import "~/node_modules/frontend-framework/components/saas/blog/bloglatest-text-1-1/bloglatest-text-1-1";
+// @import "~/node_modules/frontend-framework/components/saas/blog/bloglatest-text-2-1/bloglatest-text-2-1";
+// @import "~/node_modules/frontend-framework/components/saas/blog/bloglatest-text-2-2/bloglatest-text-2-2";
+
+// @import "~/node_modules/frontend-framework/components/saas/footers/footer-3col-menu/footer-3col-menu";
+
+// @import "~/node_modules/frontend-framework/components/saas/filters/filter-mini-1/filter-mini-1";

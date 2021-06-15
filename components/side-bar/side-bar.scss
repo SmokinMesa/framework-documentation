@@ -1,0 +1,259 @@
+/*
+    title:  side-bar
+    author: nexuspoint.co.uk
+    notes:
+
+======================================================================================================================================================================================================== */
+
+
+@use "~/assets/scss/_theme" as *;
+@use "~/node_modules/frontend-framework/uikit/mixins/_mixins" as *;
+
+
+//  component wrapper
+//  ====================================================================================================
+@mixin side-bar(
+    $component-name: "side-bar",
+
+    $background: $grey-3
+) {
+    $full-size: 120px;
+    $reduced-size: 100px;
+
+    .#{$component-name} {
+        @extend %cf;
+        @include flex($align: stretch, $justify: flex-start);
+
+        color: contrast($background, 42, $grey-1, #000);
+        left: 0;
+        height: 100%;
+        min-height: 100vh;
+        position: fixed;
+        top: 0;
+        z-index: 997;
+
+        li {
+            cursor: pointer;
+            // text-transform: capitalize;
+        }
+
+        a {
+            color: inherit;
+            display: block;
+            text-decoration: none;
+        }
+
+        //  nav trigger
+        //  ============================================================================================
+        .nav-trigger {
+            background: $color-1;
+            border-bottom: 1px solid scale-color($color-1, $lightness: -15%);
+            color: contrast($color-1, 75, #fff, #000);
+            cursor: pointer;
+            height: $reduced-size;
+            padding: 0;
+            position: absolute;
+            top: 0;
+            transition: .4s;
+            width: $reduced-size;
+            z-index: 2;
+
+            @media screen and (min-width: $break-medium) {
+                height: $full-size;
+                width: $full-size;
+            }
+
+            &:hover {
+                background-color: scale-color($color-1, $lightness: -15%);
+                transition: .3s;
+
+                .icon-menu-close {
+                    transform: rotate(-90deg);
+                }
+            }
+
+            .icon {
+                @include set-icon-color(#fff);
+
+                height: auto;
+
+                &.icon-menu-close {
+                    &:active {
+                        transform: scale(.5);
+                        transition: .1s;
+                    }
+                }
+            }
+        }
+
+        //  nav parent
+        //  ============================================================================================
+        .nav-col {
+            background-color: $color-1;
+            color: contrast($color-1, 42, $grey-1, #000);
+            margin-top: $reduced-size;
+            overflow: auto;      //  TODO cant have this as it hides the child nav
+            position: relative;
+            width: $reduced-size;
+            z-index: 1;
+
+            @media screen and (min-width: $break-medium) {
+                margin-top: $full-size;
+                width: $full-size;
+            }
+
+            //  this adds an "overlay" for z-indexing
+            &::after {
+                background-color: $color-1;
+                bottom: 0;
+                content: "";
+                left: 0;
+                position: absolute;
+                right: 0;
+                top: 0;
+                z-index: 1;
+            }
+        }
+            //  main, top level
+            //  ========================================================================================
+            .link-parent {
+                @include flex($align: stretch, $justify: stretch);
+
+                border-bottom: 1px solid scale-color($color-1, $lightness: -25%);
+                cursor: pointer;
+                height: $reduced-size;
+                text-align: center;
+                transition: .4s;
+
+                @media screen and (min-width: $break-medium) {
+                    height: $full-size;
+                }
+
+                //  toggle display of immediate child group on hover
+                &:hover {
+                    > .grouped-children {
+                        transform: translateX(0);
+                        transition: .2s;
+                    }
+                }
+
+                //  as parent ul has colour overlay (for z-indexing) need to bring text back up
+                > span {
+                    @include flex($align: center, $justify: center);
+
+                    background-color: $color-1;
+                    border-bottom: 1px solid scale-color($color-1, $lightness: -25%);
+                    flex-grow: 1;
+                    position: relative;
+                    transition: .2s;
+                    z-index: 2;
+
+                    &:hover,
+                    &.nuxt-link-active {
+                        background-color: scale-color($color-1, $lightness: -25%);
+                        transition: .3s;
+                    }
+                }
+            }
+                //  group all children in this, for side/side nav style
+                //  ====================================================================================
+                .grouped-children {
+                    background-color: $background;
+                    bottom: 0;
+                    color: $color-1;
+                    left: $reduced-size;
+                    overflow: auto;
+                    position: fixed;
+                    text-align: left;
+                    transform: translateX(-400px);
+                    transition: .2s;
+                    top: 0;
+                    width: 300px;
+
+                    @media screen and (min-width: $break-medium) {
+                        left: $full-size;
+                    }
+                }
+
+                    //  all links have at least a child (non accordion)
+                    //  ================================================================================
+                    .nav-child {
+                        transition: .4s;
+
+                        &.nuxt-link-active,
+                        &.expanded,
+                        &:hover {
+                            background-color: scale-color($background, $lightness: -10%);
+                            transition: .2s;
+                        }
+
+                        &.nuxt-link-active,
+                        &.expanded {
+                            .nav-grandchild {
+                                display: block;
+                            }
+                        }
+
+                        &:not(.nuxt-link-active).expanded {
+                            .icon-chevron-down {
+                                transform: rotate(180deg);
+                                transition: .1s;
+                            }
+                        }
+
+                        li {
+                            padding: 1em 2em;
+                        }
+                    }
+                        //  accordion style dropdown
+                        //  ============================================================================
+                        .nav-grandchild {
+                            display: none;  //  shown on either nuxt-link-active (as on that route), or with expanded as accordion open
+
+                            &.nuxt-link-exact-active {
+                                // background-color: scale-color($background, $lightness: -20%);
+                                color: #fff;
+                            }
+                        }
+
+        //  dropdown icon
+        //  ============================================================================================
+        .icon-chevron-down {
+            @include set-icon-color($color-1);
+
+            float: right;
+            min-width: 10px;
+        }
+    }   //  END
+}
+
+
+
+
+//  main coloured side col
+.site-nav-parent-enter-active,
+.site-nav-parent-leave-active {
+    transition: .2s;
+}
+.site-nav-parent-enter,
+.site-nav-parent-leave-to {
+    transform: translateY(-100vh);
+}
+
+
+
+
+.site-nav-children-enter-active,
+.site-nav-children-leave-active {
+    transition: .2s;
+}
+.site-nav-children-enter,
+.site-nav-children-leave-to {
+    opacity: 0;
+    transform: translateX(-100vh);
+}
+
+
+
+//  make available (note, don't use this here when the component is used in a v-for/loop)
+@include side-bar();

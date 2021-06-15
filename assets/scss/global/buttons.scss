@@ -1,0 +1,67 @@
+/*
+    title:  buttons
+    author: @nexuspoint.co.uk
+    notes:  site wide
+
+
+
+======================================================================================================================================================================================================== */
+
+
+@use "~/assets/scss/_theme" as *;
+
+
+//  buttons, local specific
+//  ====================================================================================================
+body {
+    button,
+    .button,
+    input[type="submit"] {
+        &:not(.no-style) {
+            //  ALL
+            //  ========================================================================================
+            &.outline.outline {
+                border-width: 3px;
+            }
+
+
+
+            //  primary
+            //  ========================================================================================
+            &.primary,
+            &.color-1 {
+                //  solids
+
+
+                //  outline style
+                &.outline {
+                }
+            }
+
+
+            //  secondary
+            //  ========================================================================================
+            &.secondary,
+            &.color-2 {
+                //  solids
+                border: 3px solid rgba(0, 0, 0, .15);
+
+                &:not(:disabled) {
+                    &:hover,
+                    &.hover,
+                    &:active,
+                    &.active {
+                        background: mix(#fff, $color-2, 30%);
+                    }
+                }
+
+                //  outline style
+                &.outline.outline {
+                    color: $body-color;     //  not really needed as design shows no secondary outline style requirement
+                }
+            }
+
+
+        }
+    }
+}

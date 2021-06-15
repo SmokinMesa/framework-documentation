@@ -1,0 +1,86 @@
+[
+  {
+    "name": "components",
+    "path": "/components",
+    "component": "/Users/robdillon/development/_spike/framework-showcase/pages/components/index.vue",
+    "chunkName": "pages/components/index",
+    "_name": "_65534821"
+  },
+  {
+    "name": "layout",
+    "path": "/layout",
+    "component": "/Users/robdillon/development/_spike/framework-showcase/pages/layout/index.vue",
+    "chunkName": "pages/layout/index",
+    "_name": "_1cbbef35"
+  },
+  {
+    "name": "overview",
+    "path": "/overview",
+    "component": "/Users/robdillon/development/_spike/framework-showcase/pages/overview.vue",
+    "chunkName": "pages/overview",
+    "_name": "_5a00ed01"
+  },
+  {
+    "name": "style",
+    "path": "/style",
+    "component": "/Users/robdillon/development/_spike/framework-showcase/pages/style.vue",
+    "chunkName": "pages/style",
+    "_name": "_704dd459"
+  },
+  {
+    "name": "style-guide",
+    "path": "/style-guide",
+    "component": "/Users/robdillon/development/_spike/framework-showcase/pages/style-guide.vue",
+    "chunkName": "pages/style-guide",
+    "_name": "_2f40ff08"
+  },
+  {
+    "name": "uikit",
+    "path": "/uikit",
+    "component": "/Users/robdillon/development/_spike/framework-showcase/pages/uikit/index.vue",
+    "chunkName": "pages/uikit/index",
+    "_name": "_0c676626"
+  },
+  {
+    "name": "uikit-layout",
+    "path": "/uikit/layout",
+    "component": "/Users/robdillon/development/_spike/framework-showcase/pages/uikit/layout.vue",
+    "chunkName": "pages/uikit/layout",
+    "_name": "_2a322e9f"
+  },
+  {
+    "name": "uikit-typography",
+    "path": "/uikit/typography",
+    "component": "/Users/robdillon/development/_spike/framework-showcase/pages/uikit/typography.vue",
+    "chunkName": "pages/uikit/typography",
+    "_name": "_530ee7a4"
+  },
+  {
+    "name": "components-blog-id",
+    "path": "/components/blog/:id?",
+    "component": "/Users/robdillon/development/_spike/framework-showcase/pages/components/blog/_id.vue",
+    "chunkName": "pages/components/blog/_id",
+    "_name": "_08484cce"
+  },
+  {
+    "name": "components-filters-id",
+    "path": "/components/filters/:id?",
+    "component": "/Users/robdillon/development/_spike/framework-showcase/pages/components/filters/_id.vue",
+    "chunkName": "pages/components/filters/_id",
+    "_name": "_0b8d2db5"
+  },
+  {
+    "name": "components-site-footers-id",
+    "path": "/components/site-footers/:id?",
+    "component": "/Users/robdillon/development/_spike/framework-showcase/pages/components/site-footers/_id.vue",
+    "chunkName": "pages/components/site-footers/_id",
+    "_name": "_2e149dde"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/Users/robdillon/development/_spike/framework-showcase/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_56dd320c"
+  }
+]

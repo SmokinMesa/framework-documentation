@@ -1,0 +1,107 @@
+/*
+    title:  site-nav
+    author: nexuspoint.co.uk
+    notes:
+
+======================================================================================================================================================================================================== */
+
+
+@use "~/assets/scss/_theme" as *;
+@use "~/node_modules/frontend-framework/uikit/mixins/_mixins" as *;
+
+
+//  component wrapper
+//  ====================================================================================================
+@mixin site-nav(
+    $component-name: "site-nav",
+
+    $background: $grey-2
+) {
+    $full-size: 120px;
+    $reduced-size: 100px;
+
+    .#{$component-name} {
+        @extend %cf;
+        // @include flex($align: stretch, $justify: flex-start);
+
+        background-color: $background;
+        color: contrast($background, 42, $grey-1, #000);
+        left: 0;
+        height: 100%;
+        min-height: 100vh;
+        // overflow: auto;
+        position: fixed;
+        top: 0;
+        transform: translateX(-100%);   //  slide in when "active"
+        transition: .3s;
+        width: 220px;
+        z-index: 997;
+
+        &.active {
+            box-shadow: 8px 0 22px 0 rgba(0, 0, 0, .15);
+            transform: translateX(0);
+            transition: .2s;
+        }
+
+        //  trigger
+        //  ============================================================================================
+        .nav-trigger {
+            background-color: $color-1;
+            border-radius: 0 0 5px 0;
+            box-shadow: 8px 0 22px 0 rgba(0, 0, 0, .15);
+            color: $body-color;
+            cursor: pointer;
+            font-weight: 600;
+            height: 50px;
+            margin-bottom: 1rem;
+            padding: 0 0 0 1rem;
+            text-align: left;
+            width: calc(100% + 50px);
+
+            &.active {
+                .icon {
+                    transform: rotate(180deg);
+                    transition: .2s;
+                }
+            }
+
+            .icon {
+                @include set-icon-color($body-color);
+
+                float: right;
+                width: 50px;
+            }
+        }
+
+
+        //  global list styles for all "panels"
+        //  ============================================================================================
+        li {
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
+            cursor: pointer;
+            padding: 1rem;
+            transition: .3s;
+
+            &:hover {
+                background-color: rgba(255, 255, 255, .05);
+                transition: .2s;
+            }
+        }
+
+
+
+        //  children
+        .children {
+            li {
+                border: none;
+            }
+        }
+
+
+    }   //  END
+}
+
+
+
+//  make available (note, don't use this here when the component is used in a v-for/loop)
+@include site-nav();

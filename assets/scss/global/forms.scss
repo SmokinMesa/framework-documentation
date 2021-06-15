@@ -1,0 +1,455 @@
+/*
+    title:  forms
+    author: @nexuspoint.co.uk
+    notes:  site wide changes
+
+
+
+======================================================================================================================================================================================================== */
+
+
+@use "~/assets/scss/_theme" as *;
+@use "~/node_modules/frontend-framework/uikit/mixins/_mixins" as *;
+
+
+//  FORMS - set defaults, and allow custom variables to be passed in
+//  ====================================================================================================
+@mixin form-styles(
+    $component-name: "np-form",
+
+    $background-color: #fff,
+    $border-color: #ABBFC6,
+    $border-radius: 30px,
+    $color: $body-color,
+    $padding: 1.322rem 1.5714285714rem
+) {
+  .#{$component-name} {
+        @extend %cf;
+
+        color: $color;
+
+
+        //  hide the standard placeholder text
+        //  ============================================================================================
+        ::-webkit-input-placeholder {
+            text-indent: -1000000px;
+        }
+        ::-moz-placeholder {
+            text-indent: -1000000px;
+        }
+        :-ms-input-placeholder {
+            text-indent: -1000000px;
+        }
+        :-moz-placeholder {
+            text-indent: -1000000px;
+        }
+
+
+        //  labels and placeholders
+        //  ============================================================================================
+        label:not(.no-style) {
+            background-color: none;
+            color: rgba($color, 80%);
+            display: inline-block;
+            font-size: 1rem;
+            left: 13px;
+            line-height: 1.2857142857142858;
+            overflow: hidden;
+            padding: 0 .25em;
+            pointer-events: none;
+            position: absolute;
+            text-overflow: ellipsis;
+            top: 0;
+            transform: translateY(15px);
+            transition: .3s;
+            white-space: nowrap;
+            width: 69%;
+            z-index: 201; // for the datepicker
+        }
+            sup {
+                float: left;
+                height: 1rem;
+                padding-right: .5em;
+            }
+
+
+
+        //  input, textarea, select
+        //  ============================================================================================
+        input:not([type="checkbox"]):not([type="radio"]),
+        textarea,
+        select {
+            appearance: none;
+            background-color: $background-color;
+            border: none;
+            border: 1px solid $border-color;
+            border-radius: $border-radius;
+            color: $color;
+            cursor: pointer;
+            font-family: $body-font-family;
+            font-size: 16px;
+            line-height: 1.5;
+            margin-top: 0;
+            max-width: 100%;
+            padding: 15px 13px;
+            transition: .3s;
+            width: 100%;
+
+            @media screen and (min-width: $break-large) {
+                font-size: $base-font-size;
+            }
+
+            //  if on a dark bg the border should go lighter
+            @if $background-color == $color-1 {
+                caret-color: #fff;
+            } @else {
+                caret-color: $color-1;
+            }
+
+            @media screen and (min-width: $break-medium) {
+                font-size: 14px;
+            }
+
+
+
+            //  this class on the form element animates the label
+            &.move, &:focus {
+                + label {
+                    background-color: #fff;
+                    color: $color;
+                    display: inline-block;
+                    font-size: .8571428571428571rem;
+                    line-height: 1.2857142857142858;
+                    overflow: hidden;
+                    pointer-events: none;
+                    text-overflow: ellipsis;
+                    transition: .3s;
+                    transform: translateY(-.6rem);
+                    white-space: nowrap;
+                    width: auto;
+                }
+            }
+
+            &.move {
+                border-bottom: solid 3px $color-2;
+            }
+
+            //  add a hover and focus brand colour
+            &:hover,
+            &:focus {
+                transition: .3s;
+
+                //  if on a dark bg the border should go lighter
+                // @if $background-color == $color-1 {
+                //     border-color: #fff;
+                // } @else {
+                //     border-color: $color-1;
+                // }
+
+                //  add a native invalid
+                &:not(:placeholder-shown):invalid {
+                    border-color: $color-error;
+                    transition: .3s;
+                }
+
+                ~ label {
+                    color: $color;
+                }
+
+                ~ .icon {
+                    @include set-icon-color($color-1);
+                }
+
+                &:invalid {
+                    border-color: $color-error;
+
+                    ~ label {
+                        color: $color-error;
+                    }
+                }
+            }
+        }
+
+        //  remove the select drop down from IE
+        select::-ms-expand {
+            display: none;
+        }
+
+        textarea {
+            height: 100px;
+            min-height: auto;
+            width: 100%;
+        }
+            .maxlength {
+                font-size: .714em;
+                margin: 0;
+                padding: 0;
+                text-align: right;
+                transform: translateY(.5em);    //  give it a little nudge/space
+                transform: translateY(-1.5rem);
+            }
+
+
+
+
+        //  icons * go AFTER label *
+        //  ============================================================================================
+        .icon {
+            @include set-icon-color(#ABBFC6);
+        }
+
+        label ~ .icon,
+        .select-container ~ .icon {
+            position: absolute;
+            right: 1.5em;
+            top: calc(50%);
+            transform: translateY(-50%);
+        }
+        .select-container {
+            position: relative;
+        }
+
+
+
+
+        //  make these look like a button
+        //  ============================================================================================
+        select {
+            &.button-style {
+                @include set-icon-color(#fff);
+
+                background: $grey-4;
+                border: 1px solid $body-color;
+                border-radius: 30px;
+                color: #fff;
+                cursor: pointer;
+                display: inline-block;
+                font-size: .85714rem;
+                height: auto;
+                line-height: 2;
+                padding: .75rem 2.25rem .75rem 1.75rem; //  odd padding is for the down chevron
+                text-align: center;
+                width: auto;
+
+                &.primary {
+                    background: $color-1;
+                    border: 1px solid $color-1;
+                    color: contrast($color-1, 42%, $body-color, $body-bg-color);
+
+                    &:hover,
+                    &.hover {
+                        background: mix($color-1, #000, 80%);
+                    }
+
+                    &:active,
+                    &.active {
+                        background: mix($color-1, #000, 70%);
+                    }
+
+
+                    &.outline {
+                        border: 1px solid $color-1;
+                        color: $color-1;
+
+                        &:hover,
+                        &.hover {
+                            background: mix($color-1, #fff, 15%);
+                        }
+
+                        &:active,
+                        &.active {
+                            background: mix($color-1, #fff, 35%);
+                        }
+                    }
+                }
+
+                &.secondary {
+                    background: #fff;
+                    border: 1px solid $color-2;
+                    color: $body-color;
+                    // color: contrast($color-2, 42%, $body-color, $body-bg-color);
+
+                    &:hover,
+                    &.hover {
+                        background: mix($color-2, #000, 80%);
+                    }
+
+                    &:active,
+                    &.active {
+                        background: mix($color-2, #000, 70%);
+                    }
+
+
+                    &.outline {
+                        border: 1px solid $color-2;
+                        color: $color-1;
+
+                        &:hover,
+                        &.hover {
+                            background: mix($color-2, #fff, 15%);
+                        }
+
+                        &:active,
+                        &.active {
+                            background: mix($color-2, #fff, 35%);
+                        }
+                    }
+                }
+
+
+                &.outline {
+                    background-color: transparent;
+                    background-image: none;
+                    border: 1px solid $body-color;
+                    color: $body-color;
+                    position: relative;
+                }
+
+                //  set icons up
+                ~ .icon {
+                    @include set-icon-color($color-1);
+
+                    pointer-events: none;
+                    position: absolute;
+                    right: 1em;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+
+                &.primary ~ .icon {
+                    @include set-icon-color(contrast($color-1, 42%, $body-color, $body-bg-color));
+                }
+
+                &.primary.outline ~ .icon {
+                    @include set-icon-color(contrast($color-1, 42%, $body-color, $color-1));
+                }
+
+                &.outline ~ .icon {
+                    @include set-icon-color($body-color);
+                }
+
+                label {
+                    display: none;  //  select button style doesn't show label
+                }
+            }
+        }
+
+
+
+
+        //  helper type wrappers for unique layouts
+        //  ============================================================================================
+        //  label then radio/checkbox
+        .label-input {
+            @extend %cf;
+
+            border-bottom: $border-color;
+            height: 2rem;
+            margin-bottom: 2rem;
+
+            label {
+                cursor: pointer;
+                display: inline-block;
+                margin-top: .4rem;
+                max-width: calc(100% - 30px);
+                overflow: hidden;
+                padding-bottom: 0;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+
+                &.disabled {
+                    cursor: not-allowed;
+                    opacity: .9;
+                }
+            }
+
+            input {
+                &[type="checkbox"],
+                &[type="radio"] {
+                    float: right;
+                    margin-left: 1em;
+
+                    &:disabled,
+                    &.disabled {
+                        cursor: not-allowed;
+                        opacity: .9;
+                    }
+                }
+            }
+        }
+
+        //  radio/checkbox then label
+        .input-label {
+            @extend %cf;
+
+            border-bottom: 1px solid $border-color;
+            height: 2rem;
+            margin-bottom: 2rem;
+
+            label {
+                cursor: pointer;
+                display: inline-block;
+                max-width: calc(100% - 30px);
+                overflow: hidden;
+                padding-bottom: 0;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+
+                &.disabled {
+                    cursor: not-allowed;
+                    opacity: .9;
+                }
+            }
+
+            input {
+                &[type="checkbox"],
+                &[type="radio"] {
+                    float: left;
+                    margin-right: 1em;
+
+                    &:disabled,
+                    &.disabled {
+                        cursor: not-allowed;
+                        opacity: .9;
+                    }
+                }
+            }
+        }
+
+
+        .icon-search {
+            cursor: pointer;
+        }
+
+        .form-items {
+            @media screen and (min-width: $break-medium) {
+                @include flex($align: center, $justify: flex-start, $wrap: wrap);
+            }
+
+            .form-item {
+                margin-bottom: 1.429em;
+                position: relative;
+
+                width: 100%;
+
+                @media screen and (min-width: $break-medium) {
+                    @include col-(6);
+                }
+
+                &.textarea {
+                    width: col-(12);
+                }
+            }
+        }
+
+        //  add a disabled state
+        //  ============================================================================================
+        :disabled,
+        .disabled {
+            cursor: not-allowed !important;
+        }
+    }   // END
+}
+
+
+

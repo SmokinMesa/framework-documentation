@@ -1,0 +1,75 @@
+/*
+    title:  typography
+    author: @nexuspoint.co.uk
+    notes:  site wide changes to main text/typography
+
+
+
+======================================================================================================================================================================================================== */
+
+
+@use "~/assets/scss/_theme" as *;
+
+
+//  site typography
+//  ====================================================================================================
+html {
+    height: 100%;
+}
+
+body {
+    font-size: 14px;
+    height: 100%;
+
+    @media screen and (min-width: $break-large) {
+        font-size: $base-font-size;
+    }
+}
+
+    //  headings
+    //  ================================================================================================
+    .h0 {
+        font-size: $h0-size;
+        line-height: 1.01rem;
+    }
+
+    h1, h2, h3, h4, h5 {
+        font-weight: 500;
+
+        @media screen and (min-width: $break-medium) {
+            font-weight: 700;
+        }
+    }
+
+    h1 {
+        font-size: $h2-size;
+        line-height: 1.133;
+
+        @media screen and (min-width: $break-medium) {
+            font-size: $h1-size;
+        }
+    }
+
+    h2 {
+        font-size: $h2-size;
+        line-height: 1.347;
+    }
+
+    h3 {
+        font-size: $h3-size;
+        line-height: 1.381;
+    }
+
+    h4 {
+        font-size: $h4-size;
+    }
+
+    h5 {
+        font-size: $h5-size;
+        text-transform: uppercase;
+    }
+
+    p {
+        line-height: $p-line-height;
+        padding: $p-padding;
+    }
